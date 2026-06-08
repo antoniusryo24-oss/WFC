@@ -1,0 +1,211 @@
+/* WFC Bandung — Design Tokens */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Base */
+  --bg:          #F7F4EF;
+  --surface:     #FFFFFF;
+  --surface-alt: #F0EDE8;
+  --border:      #E5E0D8;
+  --border-mid:  #CEC8BF;
+
+  /* Text */
+  --text-1: #1A1714;
+  --text-2: #6B6460;
+  --text-3: #9E9690;
+
+  /* Accent — warm caramel brown */
+  --accent:       #A67C52;
+  --accent-light: #F0E8DB;
+  --accent-hover: #8B6540;
+
+  /* Status */
+  --green:    #2D6A4F;
+  --green-bg: #E8F4EE;
+  --amber:    #A65C00;
+  --amber-bg: #FFF3D6;
+  --red:      #B03030;
+  --red-bg:   #FDECEA;
+
+  /* Layout */
+  --topbar-h:  60px;
+  --sidebar-w: 380px;
+
+  /* Radius */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-full: 9999px;
+
+  /* Shadow */
+  --shadow-xs: 0 1px 2px rgba(26,23,20,0.06);
+  --shadow-sm: 0 1px 4px rgba(26,23,20,0.08);
+  --shadow-md: 0 4px 12px rgba(26,23,20,0.10);
+  --shadow-lg: 0 8px 24px rgba(26,23,20,0.12);
+  --shadow-xl: 0 16px 40px rgba(26,23,20,0.14);
+
+  /* Typography */
+  --font-display: 'DM Serif Display', serif;
+  --font-ui: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg:          #141210;
+  --surface:     #1E1C19;
+  --surface-alt: #252220;
+  --border:      #302C28;
+  --border-mid:  #3D3830;
+
+  --text-1: #F0EDE8;
+  --text-2: #9E9690;
+  --text-3: #6B6460;
+
+  --accent:       #C5A880;
+  --accent-light: #2A2218;
+  --accent-hover: #D4BA96;
+
+  --green:    #5BA882;
+  --green-bg: #112A1E;
+  --amber:    #D4900A;
+  --amber-bg: #2A1E08;
+  --red:      #E05A5A;
+  --red-bg:   #2A1010;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--text-1);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+/* Leaflet overrides */
+.leaflet-container {
+  font-family: var(--font-ui) !important;
+  isolation: isolate; /* contain Leaflet's internal z-indices */
+}
+.leaflet-control-attribution { font-size: 10px !important; }
+.leaflet-control-zoom a {
+  font-family: var(--font-ui) !important;
+  color: var(--text-1) !important;
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+/* Custom popup */
+.wfc-popup .leaflet-popup-content-wrapper {
+  border-radius: var(--r-lg) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border);
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface);
+}
+.wfc-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 14px 16px;
+  width: 260px !important;
+}
+.wfc-popup .leaflet-popup-tip {
+  background: var(--surface);
+}
+.wfc-popup .leaflet-popup-close-button {
+  display: none !important;
+}
+
+/* Map marker pills */
+.wfc-marker { cursor: pointer; }
+.wfc-marker-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--r-full);
+  padding: 5px 10px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-1);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+  transition: transform 0.15s, box-shadow 0.15s;
+  pointer-events: none;
+}
+.wfc-marker-pill.active {
+  background: var(--text-1);
+  color: var(--surface);
+  border-color: var(--text-1);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.08);
+}
+.wfc-marker-pill:hover {
+  box-shadow: var(--shadow-md);
+  transform: scale(1.04);
+}
+
+/* Utility classes */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pill-green { background: var(--green-bg); color: var(--green); }
+.pill-amber { background: var(--amber-bg); color: var(--amber); }
+.pill-red   { background: var(--red-bg);   color: var(--red);   }
+.pill-gray  { background: var(--surface-alt); color: var(--text-2); }
+.pill-accent { background: var(--accent-light); color: var(--accent-hover); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--r-md);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--text-1); color: var(--surface); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary { background: var(--surface); color: var(--text-1); border: 1.5px solid var(--border-mid); }
+.btn-secondary:hover { background: var(--surface-alt); }
+.btn-ghost { background: transparent; color: var(--text-2); }
+.btn-ghost:hover { background: var(--surface-alt); color: var(--text-1); }
+
+/* Transitions */
+.slide-up-enter { animation: slideUp 0.28s cubic-bezier(0.16,1,0.3,1); }
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.fade-in { animation: fadeIn 0.2s ease; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
